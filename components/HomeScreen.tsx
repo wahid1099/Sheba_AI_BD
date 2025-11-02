@@ -7,28 +7,28 @@ import { useLanguage } from "../contexts/LanguageContext";
 
 const categories = [
   {
-    name: "Cleaning",
+    nameKey: "home.categories.cleaning",
     icon: "🧹",
     color: "from-blue-400 to-cyan-400",
     image:
       "https://images.unsplash.com/photo-1686178827149-6d55c72d81df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2xlYW5pbmclMjBzZXJ2aWNlfGVufDF8fHx8MTc2MjAxMjI3NXww&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
-    name: "Repair",
+    nameKey: "home.categories.repair",
     icon: "🔧",
     color: "from-orange-400 to-red-400",
     image:
       "https://images.unsplash.com/photo-1603114595741-e60bf9486e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwcmVwYWlyJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2MjA4OTk2MHww&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
-    name: "Tutor",
+    nameKey: "home.categories.tutor",
     icon: "📚",
     color: "from-purple-400 to-pink-400",
     image:
       "https://images.unsplash.com/photo-1589995635011-078e0bb91d11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0dXRvciUyMHRlYWNoaW5nfGVufDF8fHx8MTc2MjA4OTk2MXww&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
-    name: "Tech Support",
+    nameKey: "home.categories.techSupport",
     icon: "💻",
     color: "from-green-400 to-teal-400",
     image:
@@ -38,7 +38,7 @@ const categories = [
 
 const aiRecommendations = [
   {
-    name: "AC Repair Expert",
+    nameKey: "home.providers.acRepairExpert",
     rating: 4.9,
     jobs: 234,
     price: "৳500-800",
@@ -46,7 +46,7 @@ const aiRecommendations = [
     responseTime: "15 min",
   },
   {
-    name: "Home Cleaning Pro",
+    nameKey: "home.providers.homeCleaningPro",
     rating: 4.8,
     jobs: 456,
     price: "৳300-600",
@@ -144,7 +144,7 @@ export function HomeScreen() {
               <Sparkles className="w-8 h-8 text-[#2F6CFF]" />
             </motion.div>
             <h1 className="text-[#1F2937] dark:text-white transition-colors duration-300">
-              ServiSphere AI
+              {t("home.title")}
             </h1>
           </div>
 
@@ -181,7 +181,7 @@ export function HomeScreen() {
                 <Search className="w-5 h-5 text-[#6B7280] dark:text-gray-400 transition-colors duration-300" />
                 <input
                   type="text"
-                  placeholder="Tell me what you need..."
+                  placeholder={t("home.searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 bg-transparent outline-none text-[#1F2937] dark:text-white placeholder:text-[#9CA3AF] dark:placeholder:text-gray-400 transition-colors duration-300"
@@ -218,17 +218,17 @@ export function HomeScreen() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-[#1F2937] dark:text-white transition-colors duration-300">
-              Popular Services
+              {t("home.popularServices")}
             </h3>
             <Button variant="ghost" className="text-[#2F6CFF]">
-              View All
+              {t("home.viewAll")}
             </Button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category, index) => (
               <motion.div
-                key={category.name}
+                key={category.nameKey}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -240,7 +240,7 @@ export function HomeScreen() {
                   <div className="relative h-40 overflow-hidden">
                     <ImageWithFallback
                       src={category.image}
-                      alt={category.name}
+                      alt={t(category.nameKey)}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div
@@ -261,7 +261,7 @@ export function HomeScreen() {
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-3xl">{category.icon}</span>
                       <h4 className="text-[#1F2937] dark:text-white transition-colors duration-300">
-                        {category.name}
+                        {t(category.nameKey)}
                       </h4>
                     </div>
                     <p className="text-[#6B7280] dark:text-gray-300 text-sm transition-colors duration-300">
@@ -293,7 +293,7 @@ export function HomeScreen() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {aiRecommendations.map((provider, index) => (
               <motion.div
-                key={provider.name}
+                key={provider.nameKey}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -302,7 +302,7 @@ export function HomeScreen() {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <h4 className="text-[#1F2937] dark:text-white mb-2 transition-colors duration-300">
-                      {provider.name}
+                      {t(provider.nameKey)}
                     </h4>
                     <div className="flex items-center gap-4 text-sm text-[#6B7280] dark:text-gray-300 transition-colors duration-300">
                       <div className="flex items-center gap-1">

@@ -106,6 +106,19 @@ const translations = {
       trustAndSafety: "Trust & Safety",
       featuredServices: "Featured Services",
       topProviders: "Top Providers",
+      searchPlaceholder: "Tell me what you need...",
+      popularServices: "Popular Services",
+      viewAll: "View All",
+      categories: {
+        cleaning: "Cleaning",
+        repair: "Repair",
+        tutor: "Tutor",
+        techSupport: "Tech Support",
+      },
+      providers: {
+        acRepairExpert: "AC Repair Expert",
+        homeCleaningPro: "Home Cleaning Pro",
+      },
     },
     chat: {
       title: "AI Chat Assistant",
@@ -203,6 +216,19 @@ const translations = {
       trustAndSafety: "বিশ্বাস ও নিরাপত্তা",
       featuredServices: "বিশেষ সেবাসমূহ",
       topProviders: "শীর্ষ সেবাদাতা",
+      searchPlaceholder: "আপনার প্রয়োজন বলুন...",
+      popularServices: "জনপ্রিয় সেবাসমূহ",
+      viewAll: "সব দেখুন",
+      categories: {
+        cleaning: "পরিষ্কার-পরিচ্ছন্নতা",
+        repair: "মেরামত",
+        tutor: "শিক্ষক",
+        techSupport: "প্রযুক্তি সহায়তা",
+      },
+      providers: {
+        acRepairExpert: "এসি মেরামত বিশেষজ্ঞ",
+        homeCleaningPro: "বাড়ি পরিষ্কার বিশেষজ্ঞ",
+      },
     },
     chat: {
       title: "এআই চ্যাট সহায়ক",
