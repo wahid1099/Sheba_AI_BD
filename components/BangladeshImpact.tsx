@@ -1,76 +1,114 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, TrendingUp, Clock, MapPin, Heart, Zap, DollarSign, Award } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
+import { motion } from "framer-motion";
+import {
+  Users,
+  TrendingUp,
+  Clock,
+  MapPin,
+  Heart,
+  Zap,
+  DollarSign,
+  Award,
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 
 const cityData = [
-  { city: 'Dhaka', providers: 2340, jobs: 12450, growth: 45, color: 'bg-[#2F6CFF]' },
-  { city: 'Chittagong', providers: 890, jobs: 4230, growth: 38, color: 'bg-[#FF8C42]' },
-  { city: 'Sylhet', providers: 560, jobs: 2890, growth: 42, color: 'bg-purple-500' },
-  { city: 'Rajshahi', providers: 420, jobs: 1950, growth: 35, color: 'bg-green-500' },
-  { city: 'Khulna', providers: 380, jobs: 1720, growth: 40, color: 'bg-pink-500' },
+  {
+    city: "Dhaka",
+    providers: 2340,
+    jobs: 12450,
+    growth: 45,
+    color: "bg-[#2F6CFF]",
+  },
+  {
+    city: "Chittagong",
+    providers: 890,
+    jobs: 4230,
+    growth: 38,
+    color: "bg-[#FF8C42]",
+  },
+  {
+    city: "Sylhet",
+    providers: 560,
+    jobs: 2890,
+    growth: 42,
+    color: "bg-purple-500",
+  },
+  {
+    city: "Rajshahi",
+    providers: 420,
+    jobs: 1950,
+    growth: 35,
+    color: "bg-green-500",
+  },
+  {
+    city: "Khulna",
+    providers: 380,
+    jobs: 1720,
+    growth: 40,
+    color: "bg-pink-500",
+  },
 ];
 
 const impactStats = [
   {
     icon: Users,
-    value: '5,000+',
-    label: 'Providers Empowered',
-    description: 'Active service providers earning through the platform',
-    color: 'from-[#2F6CFF] to-[#4F88FF]'
+    value: "5,000+",
+    label: "Providers Empowered",
+    description: "Active service providers earning through the platform",
+    color: "from-[#2F6CFF] to-[#4F88FF]",
   },
   {
     icon: Clock,
-    value: '60%',
-    label: 'Faster Booking',
-    description: 'Reduced time from search to service delivery',
-    color: 'from-[#FF8C42] to-[#FF6B35]'
+    value: "60%",
+    label: "Faster Booking",
+    description: "Reduced time from search to service delivery",
+    color: "from-[#FF8C42] to-[#FF6B35]",
   },
   {
     icon: DollarSign,
-    value: '৳45M+',
-    label: 'Total Earnings',
-    description: 'Income generated for local providers',
-    color: 'from-green-500 to-teal-500'
+    value: "৳45M+",
+    label: "Total Earnings",
+    description: "Income generated for local providers",
+    color: "from-green-500 to-teal-500",
   },
   {
     icon: Heart,
-    value: '98%',
-    label: 'Satisfaction Rate',
-    description: 'Users satisfied with their service experience',
-    color: 'from-pink-500 to-rose-500'
+    value: "98%",
+    label: "Satisfaction Rate",
+    description: "Users satisfied with their service experience",
+    color: "from-pink-500 to-rose-500",
   },
 ];
 
 const socialImpact = [
   {
-    title: 'Women Empowerment',
-    value: '35%',
-    description: 'Female service providers on platform',
-    icon: '👩‍💼',
-    trend: '+12% this year'
+    title: "Women Empowerment",
+    value: "35%",
+    description: "Female service providers on platform",
+    icon: "👩‍💼",
+    trend: "+12% this year",
   },
   {
-    title: 'Rural Employment',
-    value: '28%',
-    description: 'Providers from rural areas',
-    icon: '🌾',
-    trend: '+18% growth'
+    title: "Rural Employment",
+    value: "28%",
+    description: "Providers from rural areas",
+    icon: "🌾",
+    trend: "+18% growth",
   },
   {
-    title: 'Youth Employment',
-    value: '42%',
-    description: 'Providers under 30 years old',
-    icon: '👨‍🎓',
-    trend: '+22% this quarter'
+    title: "Youth Employment",
+    value: "42%",
+    description: "Providers under 30 years old",
+    icon: "👨‍🎓",
+    trend: "+22% this quarter",
   },
   {
-    title: 'Digital Inclusion',
-    value: '15,000+',
-    description: 'First-time digital service users',
-    icon: '📱',
-    trend: 'Growing fast'
+    title: "Digital Inclusion",
+    value: "15,000+",
+    description: "First-time digital service users",
+    icon: "📱",
+    trend: "Growing fast",
   },
 ];
 
@@ -99,7 +137,7 @@ export function BangladeshImpact() {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <motion.span 
+            <motion.span
               className="text-5xl"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -109,7 +147,8 @@ export function BangladeshImpact() {
           </div>
           <h1 className="text-[#1F2937] mb-3">Bangladesh Impact</h1>
           <p className="text-[#6B7280] max-w-2xl mx-auto">
-            Empowering local communities and transforming the service industry across Bangladesh
+            Empowering local communities and transforming the service industry
+            across Bangladesh
           </p>
         </motion.div>
 
@@ -124,10 +163,14 @@ export function BangladeshImpact() {
             >
               <Card className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group h-full">
                 <CardContent className="p-6">
-                  <div className={`inline-flex p-4 bg-gradient-to-br ${stat.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}>
+                  <div
+                    className={`inline-flex p-4 bg-gradient-to-br ${stat.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}
+                  >
                     <stat.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className={`text-4xl bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                  <div
+                    className={`text-4xl bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}
+                  >
                     {stat.value}
                   </div>
                   <h3 className="text-[#1F2937] mb-2">{stat.label}</h3>
@@ -149,8 +192,12 @@ export function BangladeshImpact() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-[#1F2937]">Service Usage Heatmap</CardTitle>
-                  <p className="text-sm text-[#6B7280] mt-1">Real-time activity across major cities</p>
+                  <CardTitle className="text-[#1F2937]">
+                    Service Usage Heatmap
+                  </CardTitle>
+                  <p className="text-sm text-[#6B7280] mt-1">
+                    Real-time activity across major cities
+                  </p>
                 </div>
                 <Badge className="bg-green-100 text-green-700 border-0">
                   <Zap className="w-3 h-3 mr-1" />
@@ -174,18 +221,18 @@ export function BangladeshImpact() {
                         <div>
                           <div className="text-[#1F2937]">{city.city}</div>
                           <div className="text-sm text-[#6B7280]">
-                            {city.providers.toLocaleString()} providers • {city.jobs.toLocaleString()} jobs
+                            {city.providers.toLocaleString()} providers •{" "}
+                            {city.jobs.toLocaleString()} jobs
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <Badge className="bg-green-100 text-green-700 border-0">
-                          <TrendingUp className="w-3 h-3 mr-1" />
-                          +{city.growth}%
+                          <TrendingUp className="w-3 h-3 mr-1" />+{city.growth}%
                         </Badge>
                       </div>
                     </div>
-                    
+
                     {/* Activity Bar */}
                     <div className="relative h-12 bg-[#F7F9FB] rounded-xl overflow-hidden">
                       <motion.div
@@ -200,7 +247,7 @@ export function BangladeshImpact() {
                         animate={{ width: `${(city.providers / 2340) * 100}%` }}
                         transition={{ duration: 1, delay: 0.7 + index * 0.1 }}
                       />
-                      
+
                       {/* Pulse Effect */}
                       <motion.div
                         className={`absolute right-0 top-0 bottom-0 w-1 ${city.color}`}
@@ -223,7 +270,7 @@ export function BangladeshImpact() {
                     🗺️
                   </motion.div>
                 </div>
-                
+
                 {/* Activity Dots */}
                 {cityData.map((city, idx) => (
                   <motion.div
@@ -233,14 +280,14 @@ export function BangladeshImpact() {
                       left: `${20 + idx * 15}%`,
                       top: `${30 + (idx % 2) * 20}%`,
                     }}
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.5, 1],
-                      opacity: [0.6, 1, 0.6]
+                      opacity: [0.6, 1, 0.6],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
-                      delay: idx * 0.3
+                      delay: idx * 0.3,
                     }}
                   />
                 ))}
@@ -269,9 +316,13 @@ export function BangladeshImpact() {
                     <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
                       {metric.icon}
                     </div>
-                    <div className="text-3xl text-[#2F6CFF] mb-2">{metric.value}</div>
+                    <div className="text-3xl text-[#2F6CFF] mb-2">
+                      {metric.value}
+                    </div>
                     <h4 className="text-[#1F2937] mb-2">{metric.title}</h4>
-                    <p className="text-sm text-[#6B7280] mb-3">{metric.description}</p>
+                    <p className="text-sm text-[#6B7280] mb-3">
+                      {metric.description}
+                    </p>
                     <Badge className="bg-[#2F6CFF]/10 text-[#2F6CFF] border-0">
                       {metric.trend}
                     </Badge>
@@ -296,37 +347,48 @@ export function BangladeshImpact() {
                 <h2 className="text-white">Economic Impact</h2>
               </div>
               <p className="text-blue-100 mb-6">
-                ServiSphere AI is creating meaningful employment opportunities and driving digital transformation 
-                across Bangladesh. Our platform has enabled thousands of service providers to increase their income 
-                by an average of 45% while giving customers access to trusted, quality services.
+                ServiSphere AI is creating meaningful employment opportunities
+                and driving digital transformation across Bangladesh. Our
+                platform has enabled thousands of service providers to increase
+                their income by an average of 45% while giving customers access
+                to trusted, quality services.
               </p>
               <div className="flex gap-4">
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-3xl mb-1">45%</div>
-                  <div className="text-sm text-blue-100">Avg. Income Increase</div>
+                  <div className="text-sm text-blue-100">
+                    Avg. Income Increase
+                  </div>
                 </div>
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-3xl mb-1">2.5x</div>
-                  <div className="text-sm text-blue-100">More Job Opportunities</div>
+                  <div className="text-sm text-blue-100">
+                    More Job Opportunities
+                  </div>
                 </div>
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-3xl mb-1">24/7</div>
-                  <div className="text-sm text-blue-100">Service Availability</div>
+                  <div className="text-sm text-blue-100">
+                    Service Availability
+                  </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: 'Jobs Created', value: '12,450' },
-                { label: 'Cities Covered', value: '64' },
-                { label: 'Active Users', value: '85K+' },
-                { label: 'Response Time', value: '< 20min' },
-              ].map((stat, idx) => (
+                { label: "Jobs Created", value: "12,450" },
+                { label: "Cities Covered", value: "64" },
+                { label: "Active Users", value: "85K+" },
+                { label: "Response Time", value: "< 20min" },
+              ].map((stat, statIdx) => (
                 <motion.div
-                  key={stat.label}
+                  key={statIdx}
                   className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center"
-                  whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.3)' }}
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "rgba(255,255,255,0.3)",
+                  }}
                   transition={{ duration: 0.2 }}
                 >
                   <div className="text-3xl mb-2">{stat.value}</div>

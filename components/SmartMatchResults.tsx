@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Star, MapPin, Clock, Shield, TrendingUp, Phone, MessageCircle, Sparkles, ChevronDown, Award, BadgeCheck, Mic } from 'lucide-react';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Progress } from './ui/progress';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Star,
+  MapPin,
+  Clock,
+  Shield,
+  TrendingUp,
+  Phone,
+  MessageCircle,
+  Sparkles,
+  ChevronDown,
+  Award,
+  BadgeCheck,
+  Mic,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Progress } from "./ui/progress";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 interface Provider {
   id: string;
@@ -24,58 +37,61 @@ interface Provider {
 
 const providers: Provider[] = [
   {
-    id: '1',
-    name: 'Rashed Ahmed',
-    image: 'https://images.unsplash.com/photo-1758519290233-a03c1d17ecc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBzZXJ2aWNlJTIwcHJvdmlkZXJ8ZW58MXx8fHwxNzYyMDg5OTYxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    id: "1",
+    name: "Rashed Ahmed",
+    image:
+      "https://images.unsplash.com/photo-1758519290233-a03c1d17ecc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBzZXJ2aWNlJTIwcHJvdmlkZXJ8ZW58MXx8fHwxNzYyMDg5OTYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
     rating: 4.9,
     reviews: 234,
     trustScore: 96,
-    price: '৳500-800',
-    distance: '1.2 km',
-    responseTime: '< 15 min',
+    price: "৳500-800",
+    distance: "1.2 km",
+    responseTime: "< 15 min",
     completedJobs: 456,
-    specialties: ['AC Repair', 'Fridge Repair', 'Electrical'],
+    specialties: ["AC Repair", "Fridge Repair", "Electrical"],
     verified: true,
-    available: true
+    available: true,
   },
   {
-    id: '2',
-    name: 'Sadia Rahman',
-    image: 'https://images.unsplash.com/photo-1589995635011-078e0bb91d11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0dXRvciUyMHRlYWNoaW5nfGVufDF8fHx8MTc2MjA4OTk2MXww&ixlib=rb-4.1.0&q=80&w=1080',
+    id: "2",
+    name: "Sadia Rahman",
+    image:
+      "https://images.unsplash.com/photo-1589995635011-078e0bb91d11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0dXRvciUyMHRlYWNoaW5nfGVufDF8fHx8MTc2MjA4OTk2MXww&ixlib=rb-4.1.0&q=80&w=1080",
     rating: 4.8,
     reviews: 189,
     trustScore: 94,
-    price: '৳400-700',
-    distance: '2.5 km',
-    responseTime: '< 20 min',
+    price: "৳400-700",
+    distance: "2.5 km",
+    responseTime: "< 20 min",
     completedJobs: 378,
-    specialties: ['Home Cleaning', 'Deep Cleaning', 'Sanitization'],
+    specialties: ["Home Cleaning", "Deep Cleaning", "Sanitization"],
     verified: true,
-    available: true
+    available: true,
   },
   {
-    id: '3',
-    name: 'Kamal Hossain',
-    image: 'https://images.unsplash.com/photo-1603114595741-e60bf9486e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwcmVwYWlyJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2MjA4OTk2MHww&ixlib=rb-4.1.0&q=80&w=1080',
+    id: "3",
+    name: "Kamal Hossain",
+    image:
+      "https://images.unsplash.com/photo-1603114595741-e60bf9486e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwcmVwYWlyJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2MjA4OTk2MHww&ixlib=rb-4.1.0&q=80&w=1080",
     rating: 4.7,
     reviews: 156,
     trustScore: 92,
-    price: '৳600-900',
-    distance: '3.1 km',
-    responseTime: '< 30 min',
+    price: "৳600-900",
+    distance: "3.1 km",
+    responseTime: "< 30 min",
     completedJobs: 289,
-    specialties: ['Plumbing', 'Pipe Repair', 'Water Heater'],
+    specialties: ["Plumbing", "Pipe Repair", "Water Heater"],
     verified: true,
-    available: false
+    available: false,
   },
 ];
 
 const rankingFactors = [
-  { name: 'Trust Score', value: 35, color: 'bg-[#2F6CFF]' },
-  { name: 'Rating', value: 25, color: 'bg-[#FF8C42]' },
-  { name: 'Response Time', value: 20, color: 'bg-purple-500' },
-  { name: 'Distance', value: 15, color: 'bg-green-500' },
-  { name: 'Price Match', value: 5, color: 'bg-yellow-500' },
+  { name: "Trust Score", value: 35, color: "bg-[#2F6CFF]" },
+  { name: "Rating", value: 25, color: "bg-[#FF8C42]" },
+  { name: "Response Time", value: 20, color: "bg-purple-500" },
+  { name: "Distance", value: 15, color: "bg-green-500" },
+  { name: "Price Match", value: 5, color: "bg-yellow-500" },
 ];
 
 export function SmartMatchResults() {
@@ -108,18 +124,24 @@ export function SmartMatchResults() {
                 </div>
                 <div>
                   <h2 className="text-[#1F2937]">Smart Match Results</h2>
-                  <p className="text-sm text-[#6B7280]">12 verified providers found near you</p>
+                  <p className="text-sm text-[#6B7280]">
+                    12 verified providers found near you
+                  </p>
                 </div>
               </div>
-              
-              <Button 
+
+              <Button
                 variant="outline"
                 className="gap-2"
                 onClick={() => setShowRanking(!showRanking)}
               >
                 <TrendingUp className="w-4 h-4" />
                 How AI Ranks
-                <ChevronDown className={`w-4 h-4 transition-transform ${showRanking ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    showRanking ? "rotate-180" : ""
+                  }`}
+                />
               </Button>
             </div>
 
@@ -127,13 +149,14 @@ export function SmartMatchResults() {
             {showRanking && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 className="mt-4 pt-4 border-t border-[#E0E7FF]"
               >
                 <h4 className="text-[#1F2937] mb-3">AI Ranking Transparency</h4>
                 <p className="text-sm text-[#6B7280] mb-4">
-                  Our AI considers multiple factors to find the best match for you:
+                  Our AI considers multiple factors to find the best match for
+                  you:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                   {rankingFactors.map((factor, index) => (
@@ -145,10 +168,15 @@ export function SmartMatchResults() {
                       className="text-center"
                     >
                       <div className="mb-2">
-                        <div className={`h-2 ${factor.color} rounded-full mx-auto`} style={{ width: `${factor.value * 2}%` }} />
+                        <div
+                          className={`h-2 ${factor.color} rounded-full mx-auto`}
+                          style={{ width: `${factor.value * 2}%` }}
+                        />
                       </div>
                       <div className="text-[#1F2937]">{factor.value}%</div>
-                      <div className="text-xs text-[#6B7280]">{factor.name}</div>
+                      <div className="text-xs text-[#6B7280]">
+                        {factor.name}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -175,11 +203,15 @@ export function SmartMatchResults() {
                 </div>
               )}
 
-              <div className={`bg-white/70 backdrop-blur-xl border-2 ${
-                index === 0 ? 'border-[#FF8C42]' : 'border-white/50'
-              } rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ${
-                selectedProvider === provider.id ? 'ring-4 ring-[#2F6CFF]/30' : ''
-              }`}>
+              <div
+                className={`bg-white/70 backdrop-blur-xl border-2 ${
+                  index === 0 ? "border-[#FF8C42]" : "border-white/50"
+                } rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ${
+                  selectedProvider === provider.id
+                    ? "ring-4 ring-[#2F6CFF]/30"
+                    : ""
+                }`}
+              >
                 <div className="p-6">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Provider Image & Basic Info */}
@@ -204,7 +236,9 @@ export function SmartMatchResults() {
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <div className="flex items-center gap-2">
-                                <h3 className="text-[#1F2937]">{provider.name}</h3>
+                                <h3 className="text-[#1F2937]">
+                                  {provider.name}
+                                </h3>
                                 {provider.verified && (
                                   <BadgeCheck className="w-5 h-5 text-[#2F6CFF]" />
                                 )}
@@ -212,8 +246,12 @@ export function SmartMatchResults() {
                               <div className="flex items-center gap-4 mt-1">
                                 <div className="flex items-center gap-1">
                                   <Star className="w-4 h-4 fill-[#FF8C42] text-[#FF8C42]" />
-                                  <span className="text-[#1F2937]">{provider.rating}</span>
-                                  <span className="text-sm text-[#6B7280]">({provider.reviews})</span>
+                                  <span className="text-[#1F2937]">
+                                    {provider.rating}
+                                  </span>
+                                  <span className="text-sm text-[#6B7280]">
+                                    ({provider.reviews})
+                                  </span>
                                 </div>
                                 <div className="flex items-center gap-1 text-sm text-[#6B7280]">
                                   <Award className="w-4 h-4" />
@@ -226,7 +264,11 @@ export function SmartMatchResults() {
                           {/* Specialties */}
                           <div className="flex flex-wrap gap-2 mb-3">
                             {provider.specialties.map((specialty, idx) => (
-                              <Badge key={idx} variant="secondary" className="bg-[#F7F9FB] text-[#2F6CFF] border border-[#E0E7FF]">
+                              <Badge
+                                key={idx}
+                                variant="secondary"
+                                className="bg-[#F7F9FB] text-[#2F6CFF] border border-[#E0E7FF]"
+                              >
                                 {specialty}
                               </Badge>
                             ))}
@@ -239,21 +281,27 @@ export function SmartMatchResults() {
                                 <MapPin className="w-3 h-3" />
                                 Distance
                               </div>
-                              <div className="text-[#1F2937]">{provider.distance}</div>
+                              <div className="text-[#1F2937]">
+                                {provider.distance}
+                              </div>
                             </div>
                             <div className="bg-[#F7F9FB] rounded-xl p-2">
                               <div className="flex items-center gap-1 text-xs text-[#6B7280] mb-1">
                                 <Clock className="w-3 h-3" />
                                 Response
                               </div>
-                              <div className="text-[#1F2937]">{provider.responseTime}</div>
+                              <div className="text-[#1F2937]">
+                                {provider.responseTime}
+                              </div>
                             </div>
                             <div className="bg-[#F7F9FB] rounded-xl p-2">
                               <div className="flex items-center gap-1 text-xs text-[#6B7280] mb-1">
                                 <span className="text-[#FF8C42]">৳</span>
                                 Price
                               </div>
-                              <div className="text-[#1F2937]">{provider.price}</div>
+                              <div className="text-[#1F2937]">
+                                {provider.price}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -275,7 +323,10 @@ export function SmartMatchResults() {
                           <div className="text-4xl">{provider.trustScore}</div>
                           <div className="text-xl mb-1">/100</div>
                         </div>
-                        <Progress value={provider.trustScore} className="h-2 bg-white/20" />
+                        <Progress
+                          value={provider.trustScore}
+                          className="h-2 bg-white/20"
+                        />
                         <div className="text-xs mt-2 opacity-90">
                           Based on verification, reviews, and performance
                         </div>
@@ -283,27 +334,36 @@ export function SmartMatchResults() {
 
                       {/* Action Buttons */}
                       <div className="space-y-3 mt-auto">
-                        <Button 
+                        <Button
                           className="w-full bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white rounded-xl py-6 gap-2"
                           onClick={() => setSelectedProvider(provider.id)}
                         >
                           <Sparkles className="w-4 h-4" />
                           Book Instantly
                         </Button>
-                        
+
                         <div className="grid grid-cols-2 gap-3">
-                          <Button variant="outline" className="rounded-xl gap-2">
+                          <Button
+                            variant="outline"
+                            className="rounded-xl gap-2"
+                          >
                             <Phone className="w-4 h-4" />
                             Call
                           </Button>
-                          <Button variant="outline" className="rounded-xl gap-2">
+                          <Button
+                            variant="outline"
+                            className="rounded-xl gap-2"
+                          >
                             <MessageCircle className="w-4 h-4" />
                             Chat
                           </Button>
                         </div>
 
                         {/* Voice Booking */}
-                        <Button variant="ghost" className="w-full text-[#2F6CFF] gap-2">
+                        <Button
+                          variant="ghost"
+                          className="w-full text-[#2F6CFF] gap-2"
+                        >
                           <Mic className="w-4 h-4" />
                           Voice Book
                         </Button>
@@ -316,18 +376,24 @@ export function SmartMatchResults() {
                 {selectedProvider === provider.id && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
+                    animate={{ opacity: 1, height: "auto" }}
                     className="border-t border-[#E0E7FF] bg-[#F7F9FB]/50 p-6"
                   >
-                    <h4 className="text-[#1F2937] mb-3">Why AI Recommends This Provider</h4>
+                    <h4 className="text-[#1F2937] mb-3">
+                      Why AI Recommends This Provider
+                    </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="flex items-start gap-3">
                         <div className="p-2 bg-[#2F6CFF]/10 rounded-lg">
                           <Shield className="w-5 h-5 text-[#2F6CFF]" />
                         </div>
                         <div>
-                          <div className="text-[#1F2937]">Verified Identity</div>
-                          <div className="text-sm text-[#6B7280]">Government ID + Background check</div>
+                          <div className="text-[#1F2937]">
+                            Verified Identity
+                          </div>
+                          <div className="text-sm text-[#6B7280]">
+                            Government ID + Background check
+                          </div>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -336,7 +402,9 @@ export function SmartMatchResults() {
                         </div>
                         <div>
                           <div className="text-[#1F2937]">High Performance</div>
-                          <div className="text-sm text-[#6B7280]">98% satisfaction rate</div>
+                          <div className="text-sm text-[#6B7280]">
+                            98% satisfaction rate
+                          </div>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -345,7 +413,9 @@ export function SmartMatchResults() {
                         </div>
                         <div>
                           <div className="text-[#1F2937]">Fast Response</div>
-                          <div className="text-sm text-[#6B7280]">Usually replies within minutes</div>
+                          <div className="text-sm text-[#6B7280]">
+                            Usually replies within minutes
+                          </div>
                         </div>
                       </div>
                     </div>

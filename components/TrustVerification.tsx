@@ -1,73 +1,122 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Shield, CheckCircle2, Lock, FileCheck, Award, Sparkles, AlertTriangle, Eye, Clock } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Progress } from './ui/progress';
-import { Button } from './ui/button';
+import { motion } from "framer-motion";
+import {
+  Shield,
+  CheckCircle2,
+  Lock,
+  FileCheck,
+  Award,
+  Sparkles,
+  AlertTriangle,
+  Eye,
+  Clock,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Progress } from "./ui/progress";
+import { Button } from "./ui/button";
 
 const verificationLevels = [
   {
-    level: 'Bronze',
-    icon: '🥉',
-    color: 'from-amber-600 to-amber-800',
-    requirements: ['Phone Verified', 'Email Verified', 'Profile Complete'],
-    benefits: ['Basic Trust Badge', 'Listed in Search'],
+    level: "Bronze",
+    icon: "🥉",
+    color: "from-amber-600 to-amber-800",
+    requirements: ["Phone Verified", "Email Verified", "Profile Complete"],
+    benefits: ["Basic Trust Badge", "Listed in Search"],
     completed: true,
-    progress: 100
+    progress: 100,
   },
   {
-    level: 'Silver',
-    icon: '🥈',
-    color: 'from-gray-400 to-gray-600',
-    requirements: ['Identity Document', '5+ Reviews', '10+ Completed Jobs'],
-    benefits: ['Enhanced Visibility', 'Priority Support', 'Featured in Category'],
+    level: "Silver",
+    icon: "🥈",
+    color: "from-gray-400 to-gray-600",
+    requirements: ["Identity Document", "5+ Reviews", "10+ Completed Jobs"],
+    benefits: [
+      "Enhanced Visibility",
+      "Priority Support",
+      "Featured in Category",
+    ],
     completed: true,
-    progress: 100
+    progress: 100,
   },
   {
-    level: 'Gold',
-    icon: '🥇',
-    color: 'from-yellow-400 to-yellow-600',
-    requirements: ['Background Check', '50+ Jobs', '4.8+ Rating', 'Skill Certification'],
-    benefits: ['Top Rankings', 'Premium Badge', 'Price Premium +20%', 'AI Recommendations'],
+    level: "Gold",
+    icon: "🥇",
+    color: "from-yellow-400 to-yellow-600",
+    requirements: [
+      "Background Check",
+      "50+ Jobs",
+      "4.8+ Rating",
+      "Skill Certification",
+    ],
+    benefits: [
+      "Top Rankings",
+      "Premium Badge",
+      "Price Premium +20%",
+      "AI Recommendations",
+    ],
     completed: false,
-    progress: 75
+    progress: 75,
   },
 ];
 
 const securityFeatures = [
   {
     icon: Shield,
-    title: 'Identity Verification',
-    description: 'Government-issued ID verification with facial recognition',
-    status: 'verified'
+    title: "Identity Verification",
+    description: "Government-issued ID verification with facial recognition",
+    status: "verified",
   },
   {
     icon: FileCheck,
-    title: 'Background Check',
-    description: 'Criminal record and employment history verification',
-    status: 'verified'
+    title: "Background Check",
+    description: "Criminal record and employment history verification",
+    status: "verified",
   },
   {
     icon: Lock,
-    title: 'Secure Payments',
-    description: 'All transactions encrypted and fraud-protected',
-    status: 'active'
+    title: "Secure Payments",
+    description: "All transactions encrypted and fraud-protected",
+    status: "active",
   },
   {
     icon: Eye,
-    title: 'Real-time Monitoring',
-    description: 'AI monitors all interactions for suspicious activity',
-    status: 'active'
+    title: "Real-time Monitoring",
+    description: "AI monitors all interactions for suspicious activity",
+    status: "active",
   },
 ];
 
 const trustMetrics = [
-  { label: 'Identity Verified', value: 100, icon: CheckCircle2, color: 'text-green-500' },
-  { label: 'Background Check', value: 100, icon: Shield, color: 'text-blue-500' },
-  { label: 'Skill Certification', value: 85, icon: Award, color: 'text-purple-500' },
-  { label: 'Customer Reviews', value: 92, icon: Sparkles, color: 'text-yellow-500' },
+  {
+    label: "Identity Verified",
+    value: 100,
+    icon: CheckCircle2,
+    color: "text-green-500",
+  },
+  {
+    label: "Background Check",
+    value: 100,
+    icon: Shield,
+    color: "text-blue-500",
+  },
+  {
+    label: "Skill Certification",
+    value: 85,
+    icon: Award,
+    color: "text-purple-500",
+  },
+  {
+    label: "Customer Reviews",
+    value: 92,
+    icon: Sparkles,
+    color: "text-yellow-500",
+  },
 ];
 
 export function TrustVerification() {
@@ -94,12 +143,12 @@ export function TrustVerification() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <motion.div
               className="p-4 bg-gradient-to-br from-[#2F6CFF] to-[#4F88FF] rounded-2xl"
-              animate={{ 
+              animate={{
                 boxShadow: [
-                  '0 0 20px rgba(47, 108, 255, 0.3)',
-                  '0 0 40px rgba(47, 108, 255, 0.6)',
-                  '0 0 20px rgba(47, 108, 255, 0.3)',
-                ]
+                  "0 0 20px rgba(47, 108, 255, 0.3)",
+                  "0 0 40px rgba(47, 108, 255, 0.6)",
+                  "0 0 20px rgba(47, 108, 255, 0.3)",
+                ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -108,7 +157,8 @@ export function TrustVerification() {
           </div>
           <h1 className="text-[#1F2937] mb-3">Trust & Verification Center</h1>
           <p className="text-[#6B7280] max-w-2xl mx-auto">
-            Multi-layer verification system powered by AI to ensure safety and trust for all users
+            Multi-layer verification system powered by AI to ensure safety and
+            trust for all users
           </p>
         </motion.div>
 
@@ -124,7 +174,7 @@ export function TrustVerification() {
                 <Sparkles className="w-6 h-6 text-[#2F6CFF]" />
                 <h2 className="text-[#1F2937]">Your Trust Score</h2>
               </div>
-              
+
               <div className="relative inline-flex">
                 <svg className="w-48 h-48 transform -rotate-90">
                   <circle
@@ -148,7 +198,13 @@ export function TrustVerification() {
                     transition={{ duration: 2, ease: "easeOut" }}
                   />
                   <defs>
-                    <linearGradient id="trust-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient
+                      id="trust-gradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
                       <stop offset="0%" stopColor="#2F6CFF" />
                       <stop offset="100%" stopColor="#4F88FF" />
                     </linearGradient>
@@ -207,9 +263,11 @@ export function TrustVerification() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.15 }}
               >
-                <Card className={`bg-white/70 backdrop-blur-xl border-2 ${
-                  level.completed ? 'border-[#2F6CFF]' : 'border-white/50'
-                } shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden`}>
+                <Card
+                  className={`bg-white/70 backdrop-blur-xl border-2 ${
+                    level.completed ? "border-[#2F6CFF]" : "border-white/50"
+                  } shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden`}
+                >
                   {/* Glow Effect */}
                   {level.completed && (
                     <motion.div
@@ -224,7 +282,9 @@ export function TrustVerification() {
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-4xl">{level.icon}</span>
-                          <CardTitle className="text-[#1F2937]">{level.level}</CardTitle>
+                          <CardTitle className="text-[#1F2937]">
+                            {level.level}
+                          </CardTitle>
                         </div>
                         {level.completed && (
                           <Badge className="bg-green-100 text-green-700 border-0">
@@ -238,11 +298,22 @@ export function TrustVerification() {
 
                   <CardContent>
                     <div className="mb-4">
-                      <div className="text-sm text-[#6B7280] mb-2">Requirements</div>
+                      <div className="text-sm text-[#6B7280] mb-2">
+                        Requirements
+                      </div>
                       <div className="space-y-2">
                         {level.requirements.map((req, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-[#1F2937]">
-                            <CheckCircle2 className={`w-4 h-4 ${level.completed ? 'text-green-500' : 'text-gray-400'}`} />
+                          <div
+                            key={idx}
+                            className="flex items-center gap-2 text-sm text-[#1F2937]"
+                          >
+                            <CheckCircle2
+                              className={`w-4 h-4 ${
+                                level.completed
+                                  ? "text-green-500"
+                                  : "text-gray-400"
+                              }`}
+                            />
                             {req}
                           </div>
                         ))}
@@ -250,7 +321,9 @@ export function TrustVerification() {
                     </div>
 
                     <div className="mb-4">
-                      <div className="text-sm text-[#6B7280] mb-2">Benefits</div>
+                      <div className="text-sm text-[#6B7280] mb-2">
+                        Benefits
+                      </div>
                       <div className="space-y-1">
                         {level.benefits.map((benefit, idx) => (
                           <div key={idx} className="text-sm text-[#2F6CFF]">
@@ -263,8 +336,12 @@ export function TrustVerification() {
                     {!level.completed && (
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-[#6B7280]">Progress</span>
-                          <span className="text-sm text-[#2F6CFF]">{level.progress}%</span>
+                          <span className="text-sm text-[#6B7280]">
+                            Progress
+                          </span>
+                          <span className="text-sm text-[#2F6CFF]">
+                            {level.progress}%
+                          </span>
                         </div>
                         <Progress value={level.progress} className="h-2 mb-3" />
                         <Button className="w-full bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white rounded-xl">
@@ -288,7 +365,9 @@ export function TrustVerification() {
           >
             <Card className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl h-full">
               <CardHeader>
-                <CardTitle className="text-[#1F2937]">Security Features</CardTitle>
+                <CardTitle className="text-[#1F2937]">
+                  Security Features
+                </CardTitle>
                 <CardDescription className="text-[#6B7280]">
                   Multi-layer protection for your safety
                 </CardDescription>
@@ -313,7 +392,9 @@ export function TrustVerification() {
                             {feature.status}
                           </Badge>
                         </div>
-                        <p className="text-sm text-[#6B7280]">{feature.description}</p>
+                        <p className="text-sm text-[#6B7280]">
+                          {feature.description}
+                        </p>
                       </div>
                     </motion.div>
                   ))}
@@ -338,7 +419,9 @@ export function TrustVerification() {
                     <AlertTriangle className="w-8 h-8" />
                   </motion.div>
                   <div>
-                    <CardTitle className="text-white">AI Fraud Protection</CardTitle>
+                    <CardTitle className="text-white">
+                      AI Fraud Protection
+                    </CardTitle>
                     <CardDescription className="text-blue-100">
                       Active 24/7 monitoring
                     </CardDescription>
@@ -350,15 +433,19 @@ export function TrustVerification() {
                   <div>
                     <h4 className="mb-3">Real-time Detection</h4>
                     <p className="text-sm text-blue-100 mb-4">
-                      Our AI analyzes behavior patterns to detect and prevent fraud before it happens.
+                      Our AI analyzes behavior patterns to detect and prevent
+                      fraud before it happens.
                     </p>
                     <div className="space-y-3">
                       {[
-                        { label: 'Scam Prevention', value: '99.8%' },
-                        { label: 'Identity Theft Protection', value: '100%' },
-                        { label: 'Payment Security', value: '99.9%' },
+                        { label: "Scam Prevention", value: "99.8%" },
+                        { label: "Identity Theft Protection", value: "100%" },
+                        { label: "Payment Security", value: "99.9%" },
                       ].map((stat, idx) => (
-                        <div key={idx} className="flex items-center justify-between">
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between"
+                        >
                           <span className="text-sm">{stat.label}</span>
                           <span className="text-white">{stat.value}</span>
                         </div>
@@ -371,7 +458,7 @@ export function TrustVerification() {
                       <Clock className="w-5 h-5" />
                       <h4>Response Time</h4>
                     </div>
-                    <div className="text-3xl mb-1">{'<'} 2 minutes</div>
+                    <div className="text-3xl mb-1">{"<"} 2 minutes</div>
                     <p className="text-sm text-blue-100">
                       Average time to detect and flag suspicious activity
                     </p>
@@ -379,7 +466,8 @@ export function TrustVerification() {
 
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
                     <p className="text-sm">
-                      <strong>100% Money-Back Guarantee</strong> if you're affected by fraud on our platform
+                      <strong>100% Money-Back Guarantee</strong> if you're
+                      affected by fraud on our platform
                     </p>
                   </div>
                 </div>
@@ -403,10 +491,13 @@ export function TrustVerification() {
               <Award className="w-12 h-12 text-purple-600" />
             </motion.div>
           </div>
-          <h2 className="text-[#1F2937] mb-3">Blockchain-Verified Credentials</h2>
+          <h2 className="text-[#1F2937] mb-3">
+            Blockchain-Verified Credentials
+          </h2>
           <p className="text-[#6B7280] max-w-2xl mx-auto mb-6">
-            All verification badges are stored on the blockchain, making them tamper-proof and permanently verifiable.
-            Your trust score is immutable and transparent.
+            All verification badges are stored on the blockchain, making them
+            tamper-proof and permanently verifiable. Your trust score is
+            immutable and transparent.
           </p>
           <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 to-pink-700 text-white rounded-xl">
             View on Blockchain
