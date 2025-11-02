@@ -9,6 +9,8 @@ import {
   Globe,
   Menu,
   X,
+  User,
+  LogIn,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { HomeScreen } from "./components/HomeScreen";
@@ -20,6 +22,7 @@ import { BangladeshImpact } from "./components/BangladeshImpact";
 import { useLanguage } from "./contexts/LanguageContext";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { AuthModals } from "./components/AuthModals";
 
 type Screen = "home" | "chat" | "results" | "dashboard" | "trust" | "impact";
 
@@ -62,6 +65,8 @@ const navigationItems: NavItem[] = [
 export const AppContent: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const { t } = useLanguage();
 
   const renderScreen = () => {
@@ -88,6 +93,16 @@ export const AppContent: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleSwitchToSignUp = () => {
+    setIsLoginOpen(false);
+    setIsSignUpOpen(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setIsSignUpOpen(false);
+    setIsLoginOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-[#F7F9FB] dark:bg-gray-900 relative transition-colors duration-300">
       {/* Top Navigation Bar */}
@@ -108,7 +123,7 @@ export const AppContent: React.FC = () => {
             >
               <div className="relative">
                 <div className="w-10 h-10 bg-gradient-to-br from-[#2F6CFF] to-[#4F88FF] rounded-xl flex items-center justify-center">
-                  <span className="text-white text-xl">S</span>
+                  <span className="text-white text-lg font-bold">শে</span>
                 </div>
                 <motion.div
                   className="absolute -top-1 -right-1 w-3 h-3 bg-[#FF8C42] rounded-full"
@@ -145,8 +160,25 @@ export const AppContent: React.FC = () => {
                 </motion.button>
               ))}
 
-              {/* Theme and Language Controls */}
+              {/* Auth, Theme and Language Controls */}
               <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsLoginOpen(true)}
+                  className="gap-2"
+                >
+                  <LogIn className="w-4 h-4" />
+                  {t("common.login")}
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => setIsSignUpOpen(true)}
+                  className="bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white gap-2"
+                >
+                  <User className="w-4 h-4" />
+                  {t("common.signUp")}
+                </Button>
                 <ThemeToggle />
                 <LanguageSwitcher />
               </div>
@@ -154,6 +186,20 @@ export const AppContent: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 lg:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsLoginOpen(true)}
+              >
+                <LogIn className="w-4 h-4" />
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => setIsSignUpOpen(true)}
+                className="bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white"
+              >
+                <User className="w-4 h-4" />
+              </Button>
               <ThemeToggle />
               <LanguageSwitcher />
               <Button
@@ -290,6 +336,16 @@ export const AppContent: React.FC = () => {
           transition={{ duration: 10, repeat: Infinity }}
         />
       </div>
+
+      {/* Auth Modals */}
+      <AuthModals
+        isLoginOpen={isLoginOpen}
+        isSignUpOpen={isSignUpOpen}
+        onCloseLogin={() => setIsLoginOpen(false)}
+        onCloseSignUp={() => setIsSignUpOpen(false)}
+        onSwitchToSignUp={handleSwitchToSignUp}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </div>
   );
 };

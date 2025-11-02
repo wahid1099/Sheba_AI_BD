@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mic, Search, Sparkles, Clock, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const categories = [
   {
@@ -55,6 +56,7 @@ const aiRecommendations = [
 ];
 
 export function HomeScreen() {
+  const { t } = useLanguage();
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -63,7 +65,7 @@ export function HomeScreen() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img

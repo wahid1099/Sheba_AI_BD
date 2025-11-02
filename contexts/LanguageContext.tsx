@@ -82,9 +82,21 @@ const translations = {
       open: "Open",
       yes: "Yes",
       no: "No",
+      online: "Online",
+      signUp: "Sign Up",
+      login: "Login",
+      logout: "Logout",
+      email: "Email",
+      password: "Password",
+      name: "Name",
+      phone: "Phone",
+      createAccount: "Create Account",
+      alreadyHaveAccount: "Already have an account?",
+      dontHaveAccount: "Don't have an account?",
+      forgotPassword: "Forgot Password?",
     },
     home: {
-      title: "ServiSphere AI",
+      title: "SHEBA-AI BD",
       subtitle: "Trusted Service Marketplace",
       description:
         "AI-powered service marketplace connecting users with trusted local providers in Bangladesh",
@@ -100,7 +112,8 @@ const translations = {
       placeholder: "Ask me anything about services...",
       send: "Send",
       typing: "AI is typing...",
-      welcome: "Hello! How can I help you find the perfect service today?",
+      welcome:
+        "Assalamu Alaikum! How can I help you find the perfect service today?",
     },
     services: {
       categories: {
@@ -166,9 +179,21 @@ const translations = {
       open: "খুলুন",
       yes: "হ্যাঁ",
       no: "না",
+      online: "অনলাইন",
+      signUp: "সাইন আপ",
+      login: "লগইন",
+      logout: "লগআউট",
+      email: "ইমেইল",
+      password: "পাসওয়ার্ড",
+      name: "নাম",
+      phone: "ফোন",
+      createAccount: "অ্যাকাউন্ট তৈরি করুন",
+      alreadyHaveAccount: "ইতিমধ্যে অ্যাকাউন্ট আছে?",
+      dontHaveAccount: "অ্যাকাউন্ট নেই?",
+      forgotPassword: "পাসওয়ার্ড ভুলে গেছেন?",
     },
     home: {
-      title: "সার্ভিস্ফিয়ার এআই",
+      title: "শেবা-এআই বিডি",
       subtitle: "বিশ্বস্ত সেবা বাজার",
       description:
         "বাংলাদেশে বিশ্বস্ত স্থানীয় সেবাদাতাদের সাথে ব্যবহারকারীদের সংযোগকারী এআই-চালিত সেবা বাজার",
@@ -185,7 +210,7 @@ const translations = {
       send: "পাঠান",
       typing: "এআই টাইপ করছে...",
       welcome:
-        "হ্যালো! আজ আপনার জন্য নিখুঁত সেবা খুঁজে পেতে আমি কীভাবে সাহায্য করতে পারি?",
+        "আসসালামু আলাইকুম! আজ আপনার জন্য নিখুঁত সেবা খুঁজে পেতে আমি কীভাবে সাহায্য করতে পারি?",
     },
     services: {
       categories: {

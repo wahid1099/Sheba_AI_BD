@@ -121,7 +121,7 @@ const trustMetrics = [
 
 export function TrustVerification() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Shield Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div

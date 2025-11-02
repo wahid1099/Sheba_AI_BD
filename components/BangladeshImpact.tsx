@@ -114,7 +114,7 @@ const socialImpact = [
 
 export function BangladeshImpact() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -145,8 +145,10 @@ export function BangladeshImpact() {
               🇧🇩
             </motion.span>
           </div>
-          <h1 className="text-[#1F2937] mb-3">Bangladesh Impact</h1>
-          <p className="text-[#6B7280] max-w-2xl mx-auto">
+          <h1 className="text-[#1F2937] dark:text-white mb-3 transition-colors duration-300">
+            Bangladesh Impact
+          </h1>
+          <p className="text-[#6B7280] dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
             Empowering local communities and transforming the service industry
             across Bangladesh
           </p>
