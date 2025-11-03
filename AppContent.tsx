@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
@@ -11,6 +11,7 @@ import {
   X,
   User,
   LogIn,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { HomeScreen } from "./components/HomeScreen";
@@ -23,6 +24,7 @@ import { useLanguage } from "./contexts/LanguageContext";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { AuthModals } from "./components/AuthModals";
+import { AccessibilityCompanion } from "./components/AccessibilityCompanion";
 
 type Screen = "home" | "chat" | "results" | "dashboard" | "trust" | "impact";
 
@@ -67,7 +69,9 @@ export const AppContent: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
   const { t } = useLanguage();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const renderScreen = () => {
     switch (currentScreen) {
@@ -93,15 +97,34 @@ export const AppContent: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleSwitchToSignUp = () => {
-    setIsLoginOpen(false);
-    setIsSignUpOpen(true);
-  };
-
   const handleSwitchToLogin = () => {
     setIsSignUpOpen(false);
     setIsLoginOpen(true);
+    setIsAccountDropdownOpen(false);
   };
+
+  const handleSwitchToSignUp = () => {
+    setIsLoginOpen(false);
+    setIsSignUpOpen(true);
+    setIsAccountDropdownOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsAccountDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F7F9FB] dark:bg-gray-900 relative transition-colors duration-300">
@@ -162,23 +185,76 @@ export const AppContent: React.FC = () => {
 
               {/* Auth, Theme and Language Controls */}
               <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsLoginOpen(true)}
-                  className="gap-2"
-                >
-                  <LogIn className="w-4 h-4" />
-                  {t("common.login")}
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => setIsSignUpOpen(true)}
-                  className="bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white gap-2"
-                >
-                  <User className="w-4 h-4" />
-                  {t("common.signUp")}
-                </Button>
+                {/* Combined Account Button */}
+                <div className="relative" ref={dropdownRef}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setIsAccountDropdownOpen(!isAccountDropdownOpen)
+                    }
+                    className="gap-2"
+                  >
+                    <User className="w-4 h-4" />
+                    {t("common.account")}
+                    <ChevronDown
+                      className={`w-3 h-3 transition-transform ${
+                        isAccountDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Button>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isAccountDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50"
+                      >
+                        <div className="p-2">
+                          <button
+                            onClick={() => {
+                              setIsLoginOpen(true);
+                              setIsAccountDropdownOpen(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                          >
+                            <LogIn className="w-4 h-4 text-[#2F6CFF]" />
+                            <div>
+                              <div className="text-sm text-[#1F2937] dark:text-white">
+                                {t("common.login")}
+                              </div>
+                              <div className="text-xs text-[#6B7280] dark:text-gray-400">
+                                {t("common.accessAccount")}
+                              </div>
+                            </div>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              setIsSignUpOpen(true);
+                              setIsAccountDropdownOpen(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                          >
+                            <User className="w-4 h-4 text-[#FF8C42]" />
+                            <div>
+                              <div className="text-sm text-[#1F2937] dark:text-white">
+                                {t("common.signUp")}
+                              </div>
+                              <div className="text-xs text-[#6B7280] dark:text-gray-400">
+                                {t("common.createNewAccount")}
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <ThemeToggle />
                 <LanguageSwitcher />
               </div>
@@ -186,20 +262,59 @@ export const AppContent: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 lg:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsLoginOpen(true)}
-              >
-                <LogIn className="w-4 h-4" />
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => setIsSignUpOpen(true)}
-                className="bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] hover:from-[#2557CC] to-[#3D6FCC] text-white"
-              >
-                <User className="w-4 h-4" />
-              </Button>
+              {/* Mobile Account Button */}
+              <div className="relative">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    setIsAccountDropdownOpen(!isAccountDropdownOpen)
+                  }
+                >
+                  <User className="w-4 h-4" />
+                </Button>
+
+                {/* Mobile Dropdown */}
+                <AnimatePresence>
+                  {isAccountDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50"
+                    >
+                      <div className="p-2">
+                        <button
+                          onClick={() => {
+                            setIsLoginOpen(true);
+                            setIsAccountDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                          <LogIn className="w-4 h-4 text-[#2F6CFF]" />
+                          <span className="text-sm text-[#1F2937] dark:text-white">
+                            {t("common.login")}
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setIsSignUpOpen(true);
+                            setIsAccountDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                          <User className="w-4 h-4 text-[#FF8C42]" />
+                          <span className="text-sm text-[#1F2937] dark:text-white">
+                            {t("common.signUp")}
+                          </span>
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <ThemeToggle />
               <LanguageSwitcher />
               <Button
@@ -346,6 +461,9 @@ export const AppContent: React.FC = () => {
         onSwitchToSignUp={handleSwitchToSignUp}
         onSwitchToLogin={handleSwitchToLogin}
       />
+
+      {/* AI Accessibility Companion */}
+      <AccessibilityCompanion />
     </div>
   );
 };

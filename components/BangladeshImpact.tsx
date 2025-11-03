@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../contexts/LanguageContext";
 import {
   Users,
   TrendingUp,
@@ -50,32 +51,32 @@ const cityData = [
   },
 ];
 
-const impactStats = [
+const getImpactStats = () => [
   {
     icon: Users,
     value: "5,000+",
-    label: "Providers Empowered",
+    labelKey: "impact.providersEmpowered",
     description: "Active service providers earning through the platform",
     color: "from-[#2F6CFF] to-[#4F88FF]",
   },
   {
     icon: Clock,
     value: "60%",
-    label: "Faster Booking",
+    labelKey: "impact.fasterBooking",
     description: "Reduced time from search to service delivery",
     color: "from-[#FF8C42] to-[#FF6B35]",
   },
   {
     icon: DollarSign,
     value: "৳45M+",
-    label: "Total Earnings",
+    labelKey: "impact.totalEarnings",
     description: "Income generated for local providers",
     color: "from-green-500 to-teal-500",
   },
   {
     icon: Heart,
     value: "98%",
-    label: "Satisfaction Rate",
+    labelKey: "impact.satisfactionRate",
     description: "Users satisfied with their service experience",
     color: "from-pink-500 to-rose-500",
   },
@@ -113,6 +114,8 @@ const socialImpact = [
 ];
 
 export function BangladeshImpact() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background */}
@@ -146,37 +149,40 @@ export function BangladeshImpact() {
             </motion.span>
           </div>
           <h1 className="text-[#1F2937] dark:text-white mb-3 transition-colors duration-300">
-            Bangladesh Impact
+            {t("impact.title")}
           </h1>
           <p className="text-[#6B7280] dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
-            Empowering local communities and transforming the service industry
-            across Bangladesh
+            {t("impact.subtitle")}
           </p>
         </motion.div>
 
         {/* Impact Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {impactStats.map((stat, index) => (
+          {getImpactStats().map((stat, index) => (
             <motion.div
-              key={stat.label}
+              key={stat.labelKey}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <Card className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group h-full">
-                <CardContent className="p-6">
+              <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 group h-full">
+                <CardContent className="p-4 md:p-6">
                   <div
-                    className={`inline-flex p-4 bg-gradient-to-br ${stat.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}
+                    className={`inline-flex p-3 md:p-4 bg-gradient-to-br ${stat.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}
                   >
-                    <stat.icon className="w-8 h-8 text-white" />
+                    <stat.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   </div>
                   <div
-                    className={`text-4xl bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}
+                    className={`text-3xl md:text-4xl bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2 font-bold`}
                   >
                     {stat.value}
                   </div>
-                  <h3 className="text-[#1F2937] mb-2">{stat.label}</h3>
-                  <p className="text-sm text-[#6B7280]">{stat.description}</p>
+                  <h3 className="text-[#1F2937] dark:text-white mb-2 transition-colors duration-300 text-lg">
+                    {t(stat.labelKey)}
+                  </h3>
+                  <p className="text-sm text-[#6B7280] dark:text-gray-300 transition-colors duration-300">
+                    {stat.description}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>

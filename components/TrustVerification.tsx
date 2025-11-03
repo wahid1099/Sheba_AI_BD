@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../contexts/LanguageContext";
 import {
   Shield,
   CheckCircle2,
@@ -21,9 +22,9 @@ import { Badge } from "./ui/badge";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 
-const verificationLevels = [
+const getVerificationLevels = () => [
   {
-    level: "Bronze",
+    levelKey: "trust.bronze",
     icon: "🥉",
     color: "from-amber-600 to-amber-800",
     requirements: ["Phone Verified", "Email Verified", "Profile Complete"],
@@ -32,7 +33,7 @@ const verificationLevels = [
     progress: 100,
   },
   {
-    level: "Silver",
+    levelKey: "trust.silver",
     icon: "🥈",
     color: "from-gray-400 to-gray-600",
     requirements: ["Identity Document", "5+ Reviews", "10+ Completed Jobs"],
@@ -45,7 +46,7 @@ const verificationLevels = [
     progress: 100,
   },
   {
-    level: "Gold",
+    levelKey: "trust.gold",
     icon: "🥇",
     color: "from-yellow-400 to-yellow-600",
     requirements: [
@@ -92,27 +93,27 @@ const securityFeatures = [
   },
 ];
 
-const trustMetrics = [
+const getTrustMetrics = () => [
   {
-    label: "Identity Verified",
+    labelKey: "trust.identityVerified",
     value: 100,
     icon: CheckCircle2,
     color: "text-green-500",
   },
   {
-    label: "Background Check",
+    labelKey: "trust.backgroundCheck",
     value: 100,
     icon: Shield,
     color: "text-blue-500",
   },
   {
-    label: "Skill Certification",
+    labelKey: "trust.skillCertification",
     value: 85,
     icon: Award,
     color: "text-purple-500",
   },
   {
-    label: "Customer Reviews",
+    labelKey: "trust.customerReviews",
     value: 92,
     icon: Sparkles,
     color: "text-yellow-500",
@@ -120,6 +121,8 @@ const trustMetrics = [
 ];
 
 export function TrustVerification() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F7F9FB] via-[#EEF2F6] to-[#E0E7FF] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Shield Background */}
@@ -155,10 +158,11 @@ export function TrustVerification() {
               <Shield className="w-12 h-12 text-white" />
             </motion.div>
           </div>
-          <h1 className="text-[#1F2937] mb-3">Trust & Verification Center</h1>
-          <p className="text-[#6B7280] max-w-2xl mx-auto">
-            Multi-layer verification system powered by AI to ensure safety and
-            trust for all users
+          <h1 className="text-[#1F2937] dark:text-white mb-3 transition-colors duration-300">
+            {t("trust.title")}
+          </h1>
+          <p className="text-[#6B7280] dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
+            {t("trust.subtitle")}
           </p>
         </motion.div>
 
@@ -166,13 +170,15 @@ export function TrustVerification() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white/70 backdrop-blur-xl border border-white/50 rounded-3xl p-8 shadow-2xl mb-8"
+          className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 rounded-3xl p-6 md:p-8 shadow-2xl mb-8 transition-colors duration-300"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-6 h-6 text-[#2F6CFF]" />
-                <h2 className="text-[#1F2937]">Your Trust Score</h2>
+                <h2 className="text-[#1F2937] dark:text-white transition-colors duration-300">
+                  {t("trust.yourTrustScore")}
+                </h2>
               </div>
 
               <div className="relative inline-flex">
@@ -215,24 +221,28 @@ export function TrustVerification() {
                     <div className="text-5xl bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] bg-clip-text text-transparent">
                       92
                     </div>
-                    <div className="text-sm text-[#6B7280]">out of 100</div>
+                    <div className="text-sm text-[#6B7280] dark:text-gray-300 transition-colors duration-300">
+                      {t("trust.outOf")} 100
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className="mt-6">
                 <Badge className="bg-gradient-to-r from-[#2F6CFF] to-[#4F88FF] text-white border-0">
-                  Top 5% Trusted Providers
+                  {t("trust.topTrustedProviders")}
                 </Badge>
               </div>
             </div>
 
             <div>
-              <h3 className="text-[#1F2937] mb-4">Trust Components</h3>
+              <h3 className="text-[#1F2937] dark:text-white mb-4 transition-colors duration-300">
+                {t("trust.trustComponents")}
+              </h3>
               <div className="space-y-4">
-                {trustMetrics.map((metric, index) => (
+                {getTrustMetrics().map((metric, index) => (
                   <motion.div
-                    key={metric.label}
+                    key={metric.labelKey}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -240,9 +250,13 @@ export function TrustVerification() {
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <metric.icon className={`w-5 h-5 ${metric.color}`} />
-                        <span className="text-[#1F2937]">{metric.label}</span>
+                        <span className="text-[#1F2937] dark:text-white transition-colors duration-300">
+                          {t(metric.labelKey)}
+                        </span>
                       </div>
-                      <span className="text-[#2F6CFF]">{metric.value}%</span>
+                      <span className="text-[#2F6CFF] dark:text-blue-400 transition-colors duration-300">
+                        {metric.value}%
+                      </span>
                     </div>
                     <Progress value={metric.value} className="h-2" />
                   </motion.div>
@@ -254,24 +268,28 @@ export function TrustVerification() {
 
         {/* Verification Levels */}
         <div className="mb-8">
-          <h2 className="text-[#1F2937] mb-6">NFT Verification Badges</h2>
+          <h2 className="text-[#1F2937] dark:text-white mb-6 transition-colors duration-300">
+            {t("trust.nftVerificationBadges")}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {verificationLevels.map((level, index) => (
+            {getVerificationLevels().map((level, index) => (
               <motion.div
-                key={level.level}
+                key={level.levelKey}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.15 }}
               >
                 <Card
-                  className={`bg-white/70 backdrop-blur-xl border-2 ${
-                    level.completed ? "border-[#2F6CFF]" : "border-white/50"
+                  className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-2 ${
+                    level.completed
+                      ? "border-[#2F6CFF] dark:border-blue-400"
+                      : "border-white/50 dark:border-gray-700/50"
                   } shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden`}
                 >
                   {/* Glow Effect */}
                   {level.completed && (
                     <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${level.color} opacity-5`}
+                      className={`absolute inset-0 bg-gradient-to-br ${level.color} opacity-5 dark:opacity-10`}
                       animate={{ opacity: [0.05, 0.15, 0.05] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
@@ -282,14 +300,14 @@ export function TrustVerification() {
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-4xl">{level.icon}</span>
-                          <CardTitle className="text-[#1F2937]">
-                            {level.level}
+                          <CardTitle className="text-[#1F2937] dark:text-white transition-colors duration-300">
+                            {t(level.levelKey)}
                           </CardTitle>
                         </div>
                         {level.completed && (
-                          <Badge className="bg-green-100 text-green-700 border-0">
+                          <Badge className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-0 transition-colors duration-300">
                             <CheckCircle2 className="w-3 h-3 mr-1" />
-                            Achieved
+                            {t("trust.achieved")}
                           </Badge>
                         )}
                       </div>
