@@ -64,6 +64,7 @@ const translations = {
       dashboard: "Dashboard",
       trustCenter: "Trust Center",
       impact: "Impact",
+      recommendations: "AI Recommendations",
     },
     common: {
       search: "Search",
@@ -287,6 +288,7 @@ const translations = {
       dashboard: "ড্যাশবোর্ড",
       trustCenter: "ট্রাস্ট সেন্টার",
       impact: "প্রভাব",
+      recommendations: "এআই সুপারিশ",
     },
     common: {
       search: "খুঁজুন",

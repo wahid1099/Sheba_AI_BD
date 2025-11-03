@@ -196,14 +196,14 @@ export function BangladeshImpact() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mb-12"
         >
-          <Card className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl">
+          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 shadow-xl">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-[#1F2937]">
+                  <CardTitle className="text-[#1F2937] dark:text-white transition-colors duration-300">
                     Service Usage Heatmap
                   </CardTitle>
-                  <p className="text-sm text-[#6B7280] mt-1">
+                  <p className="text-sm text-[#6B7280] dark:text-gray-300 mt-1 transition-colors duration-300">
                     Real-time activity across major cities
                   </p>
                 </div>
@@ -227,8 +227,10 @@ export function BangladeshImpact() {
                       <div className="flex items-center gap-3">
                         <MapPin className="w-5 h-5 text-[#2F6CFF]" />
                         <div>
-                          <div className="text-[#1F2937]">{city.city}</div>
-                          <div className="text-sm text-[#6B7280]">
+                          <div className="text-[#1F2937] dark:text-white transition-colors duration-300">
+                            {city.city}
+                          </div>
+                          <div className="text-sm text-[#6B7280] dark:text-gray-300 transition-colors duration-300">
                             {city.providers.toLocaleString()} providers •{" "}
                             {city.jobs.toLocaleString()} jobs
                           </div>
@@ -242,7 +244,7 @@ export function BangladeshImpact() {
                     </div>
 
                     {/* Activity Bar */}
-                    <div className="relative h-12 bg-[#F7F9FB] rounded-xl overflow-hidden">
+                    <div className="relative h-12 bg-[#F7F9FB] dark:bg-gray-700 rounded-xl overflow-hidden transition-colors duration-300">
                       <motion.div
                         className={`h-full ${city.color} opacity-20`}
                         initial={{ width: 0 }}
@@ -310,7 +312,9 @@ export function BangladeshImpact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <h2 className="text-[#1F2937] mb-6">Social Impact Metrics</h2>
+          <h2 className="text-[#1F2937] dark:text-white mb-6 transition-colors duration-300">
+            Social Impact Metrics
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {socialImpact.map((metric, index) => (
               <motion.div
@@ -319,19 +323,21 @@ export function BangladeshImpact() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
               >
-                <Card className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group">
+                <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group">
                   <CardContent className="p-6">
                     <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
                       {metric.icon}
                     </div>
-                    <div className="text-3xl text-[#2F6CFF] mb-2">
+                    <div className="text-3xl text-[#2F6CFF] dark:text-[#4F88FF] mb-2 transition-colors duration-300">
                       {metric.value}
                     </div>
-                    <h4 className="text-[#1F2937] mb-2">{metric.title}</h4>
-                    <p className="text-sm text-[#6B7280] mb-3">
+                    <h4 className="text-[#1F2937] dark:text-white mb-2 transition-colors duration-300">
+                      {metric.title}
+                    </h4>
+                    <p className="text-sm text-[#6B7280] dark:text-gray-300 mb-3 transition-colors duration-300">
                       {metric.description}
                     </p>
-                    <Badge className="bg-[#2F6CFF]/10 text-[#2F6CFF] border-0">
+                    <Badge className="bg-[#2F6CFF]/10 dark:bg-[#4F88FF]/20 text-[#2F6CFF] dark:text-[#4F88FF] border-0 transition-colors duration-300">
                       {metric.trend}
                     </Badge>
                   </CardContent>

@@ -4,6 +4,8 @@ import { Mic, Search, Sparkles, Clock, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useRecommendations } from "../contexts/RecommendationContext";
+import { RecommendationWidget } from "./RecommendationWidget";
 
 const categories = [
   {
@@ -57,6 +59,7 @@ const aiRecommendations = [
 
 export function HomeScreen() {
   const { t } = useLanguage();
+  const { updateUserBehavior } = useRecommendations();
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -234,6 +237,12 @@ export function HomeScreen() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.03, y: -5 }}
                 className="cursor-pointer group"
+                onClick={() =>
+                  updateUserBehavior(
+                    "category_click",
+                    category.nameKey.split(".").pop() || "unknown"
+                  )
+                }
               >
                 <div className="relative bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg border border-white/60 dark:border-gray-600/60 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
                   {/* Category Image */}
@@ -336,6 +345,11 @@ export function HomeScreen() {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* AI Recommendations Widget */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 mb-12">
+          <RecommendationWidget maxItems={2} compact={true} />
         </div>
       </div>
     </div>

@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useRecommendations } from "../contexts/RecommendationContext";
 
 interface Message {
   id: string;
@@ -60,6 +61,7 @@ interface PricingInfo {
 
 export function AIChatAssistant() {
   const { language, t } = useLanguage();
+  const { updateUserBehavior, contextualData } = useRecommendations();
 
   const getInitialMessages = (): Message[] => [
     {
@@ -476,6 +478,9 @@ export function AIChatAssistant() {
     setIsTyping(true);
     setIsAnalyzing(true);
 
+    // Track user behavior
+    updateUserBehavior("chat_message", "ai_chat");
+
     // Simulate advanced AI processing
     setTimeout(() => {
       const analysis = analyzeUserInput(messageText);
@@ -485,10 +490,22 @@ export function AIChatAssistant() {
       setIsAnalyzing(false);
       setIsTyping(false);
 
+      // Generate contextual insights
+      let contextualInsight = "";
+      if (contextualData.weather.temperature > 32) {
+        contextualInsight = ` 🌡️ Hot weather alert: AC services are in high demand today (${contextualData.weather.temperature.toFixed(
+          1
+        )}°C).`;
+      } else if (contextualData.weather.condition === "rainy") {
+        contextualInsight = ` 🌧️ Rainy day: Indoor services and home deliveries are popular right now.`;
+      } else if (contextualData.timeOfDay === "evening") {
+        contextualInsight = ` 🌆 Evening hours: Many users book relaxation and wellness services at this time.`;
+      }
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: "ai",
-        content: `Perfect! I analyzed your request using advanced NLP. I found ${providers.length} highly-rated providers for ${analysis.serviceType} near ${analysis.location}. Here are my AI-powered recommendations:`,
+        content: `Perfect! I analyzed your request using advanced NLP and real-time context. I found ${providers.length} highly-rated providers for ${analysis.serviceType} near ${analysis.location}.${contextualInsight} Here are my AI-powered recommendations:`,
         timestamp: new Date(),
         analysis,
         providers,
